@@ -9,8 +9,12 @@ class MaxHeap(object):
     def peek_max(self):
         return self.heap[1]
 
-    def rip_root(self):
-        pass
+    def remove(self):
+        r = self.heap[1]
+        e = self.heap.pop(-1)
+        self.heap[1] = e
+        self.__sink()
+        return r
 
     def __float(self):
         i = len(self.heap) - 1

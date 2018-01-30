@@ -27,16 +27,24 @@ class MaxHeap(object):
 
     def __sink(self):
         i = 1
-        if self.heap[i] > self.heap[i * 2] & self.heap[i] > self.heap[i * 2 + 1]:
-            return
-        else:
-            while True:
-                temp = self.heap[i]
-                if self.heap[i * 2] > self.heap[i * 2 + 1]:
-                    self.heap[i] = self.heap[i * 2]
-                    self.heap[i * 2] = temp
-                    i = i * 2
-                else:
-                    self.heap[i] = self.heap[i * 2 + 1]
-                    self.heap[i * 2 + 1] = temp
-                    i = i * 2 + 1
+        while i * 2 <= len(self.heap):
+            if i * 2 > len(self.heap):
+                return
+            elif i * 2 + 1 > len(self.heap):
+                if self.heap[i] < self.heap[i * 2]:
+                    temp = self.heap[i * 2]
+                    self.heap[i * 2] = self.heap[i]
+                    self.heap[i] = temp
+                return
+            else:
+                if self.heap[i] < self.heap [i * 2]:
+                    if self.heap[i * 2] < self.heap[i * 2 + 1]:
+                        temp = self.heap[i * 2 + 1]
+                        self.heap[i * 2 + 1] = self.heap[i]
+                        self.heap[i] = temp
+                        i = i * 2 + 1
+                    else:
+                        temp = self.heap[i * 2]
+                        self.heap[i * 2] = self.heap[i]
+                        self.heap[i] = temp
+                        i = i * 2
